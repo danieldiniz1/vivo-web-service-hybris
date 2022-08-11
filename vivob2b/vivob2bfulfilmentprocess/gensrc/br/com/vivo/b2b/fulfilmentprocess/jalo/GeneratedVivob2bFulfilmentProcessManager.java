@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 11 de ago de 2022 12:35:50                  ---
+ * --- Generated at 11 de ago de 2022 19:02:22                  ---
  * ----------------------------------------------------------------
  */
 package br.com.vivo.b2b.fulfilmentprocess.jalo;
