@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+        	
+    
+    <extension abstractclassprefix="Generated" classprefix="Vivob2bFulfilmentProcess" managername="Vivob2bFulfilmentProcessManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="vivob2bfulfilmentprocess">
+                		
+        
+        <requires-extension name="acceleratorservices"/>
+                		
+        
+        <requires-extension name="b2ctelcofulfillmentprocess"/>
+                		
+        
+        <coremodule generated="true" manager="br.com.vivo.b2b.fulfilmentprocess.jalo.Vivob2bFulfilmentProcessManager" packageroot="br.com.vivo.b2b.fulfilmentprocess"/>
+                		
+        
+        <meta key="extgen-template-extension" value="true"/>
+                		
+        
+        	
+    
+    </extension>
+        
+
+</extensioninfo>

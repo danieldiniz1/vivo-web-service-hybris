@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><project name="vivob2bbackoffice_buildcallbacks">
+    	
+    <property name="vivob2bbackofficeWebFragmentSrc" value="${ext.vivob2bbackoffice.path}/resources/web-fragment.xml"/>
+    	
+    <property name="vivob2bbackofficeWebFragmentDestJar" value="${ext.backoffice.path}/web/webroot/WEB-INF/lib/webfragmentExt_vivob2bbackoffice.jar"/>
+    	
+    <macrodef name="vivob2bbackoffice_clean_classpath_file">
+        		
+        <sequential>
+            			
+            <copy failonerror="true" file="${ext.vivob2bbackoffice.path}/.classpath" overwrite="true" tofile="${ext.vivob2bbackoffice.path}/.classpath.edit">
+                				
+                <filterchain>
+                    					
+                    <linecontainsregexp negate="true">
+                        						
+                        <regexp pattern="^(\t\t\t\t|)$"/>
+                          
+                        <!-- added by script -->
+                        					
+                    </linecontainsregexp>
+                    				
+                </filterchain>
+                			
+            </copy>
+            			
+            <move failonerror="true" file="${ext.vivob2bbackoffice.path}/.classpath.edit" overwrite="true" tofile="${ext.vivob2bbackoffice.path}/.classpath"/>
+            		
+        </sequential>
+        	
+    </macrodef>
+    	
+    <macrodef name="vivob2bbackoffice_after_clean">
+        		
+        <sequential>
+            			
+            <echo level="info" message="Generating .classpath file for vivob2bbackoffice"/>
+            			
+            <create_extension_classpath_file extname="vivob2bbackoffice"/>
+            			
+            <vivob2bbackoffice_clean_classpath_file/>
+            			
+            <vivob2bbackoffice_remove_web_fragment/>
+            		
+        </sequential>
+        	
+    </macrodef>
+    	
+    <macrodef name="vivob2bbackoffice_after_build">
+        		
+        <sequential>
+            			
+            <vivob2bbackoffice_remove_web_fragment/>
+            			
+            <vivob2bbackoffice_create_web_fragment/>
+            		
+        </sequential>
+        	
+    </macrodef>
+    	
+    <macrodef name="vivob2bbackoffice_remove_web_fragment">
+        		
+        <sequential>
+            			
+            <if>
+                				
+                <available file="${vivob2bbackofficeWebFragmentDestJar}"/>
+                				
+                <then>
+                    					
+                    <delete file="${vivob2bbackofficeWebFragmentDestJar}"/>
+                    				
+                </then>
+                			
+            </if>
+            		
+        </sequential>
+        	
+    </macrodef>
+    	
+    <macrodef name="vivob2bbackoffice_create_web_fragment">
+        		
+        <sequential>
+            			
+            <if>
+                				
+                <available file="${vivob2bbackofficeWebFragmentSrc}"/>
+                				
+                <then>
+                    					
+                    <sequential>
+                        						
+                        <jar destfile="${vivob2bbackofficeWebFragmentDestJar}">
+                            							
+                            <metainf file="${vivob2bbackofficeWebFragmentSrc}"/>
+                            						
+                        </jar>
+                        					
+                    </sequential>
+                    				
+                </then>
+                			
+            </if>
+            		
+        </sequential>
+        	
+    </macrodef>
+    	
+    <patternset id="vivob2bbackoffice.localization.pattern">
+        		
+        <!-- core and hmc  -->
+        		
+        <include name="**/*locales*_en.properties"/>
+        		
+        <exclude name="**/hmc/web/webroot/WEB-INF/classes/**/*"/>
+        		
+        <exclude name="**/unittest/**/*"/>
+        		
+        <!-- cockpit (ng) -->
+        		
+        <include name="**/i3-label_en.properties"/>
+        		
+        <include name="**/labels_en.properties"/>
+        		
+        <!-- messages -->
+        		
+        <include name="**/*messages_en.properties"/>
+        		
+        <include name="**/*messages.properties"/>
+        		
+        <!-- frontend properties files in WEB-INF/messages folder -->
+        		
+        <include name="**/WEB-INF/messages/*_en.properties"/>
+        		
+        <!-- csv and impex -->
+        		
+        <include name="**/*_en.csv"/>
+        		
+        <include name="**/*_en.impex"/>
+        		
+        <include name="**/lang-en.properties"/>
+        		
+        <!-- email localizations from yacceleratorcore -->
+        		
+        <include name="resources/**/messages/*_en.properties"/>
+        		
+        <!-- include validation messages -->
+        		
+        <include name="resources/**/ValidationMessages.properties"/>
+        	
+    </patternset>
+    	
+    <macrodef name="vivob2bbackoffice_before_build">
+        		
+        <sequential>
+            			
+            <register_sass_extension extensionname="vivob2bbackoffice"/>
+            			
+            <register_sass_extension destination="" extensionname="vivob2bbackoffice" resources="resources"/>
+            		
+        </sequential>
+        	
+    </macrodef>
+    
+</project>
