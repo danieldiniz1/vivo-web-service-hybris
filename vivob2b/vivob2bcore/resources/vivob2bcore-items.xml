@@ -26,6 +26,10 @@
             <value code="YELLOW"/>
         </enumtype>
     </enumtypes>
+<!--    Relations implements here-->
+    <relations>
+
+    </relations>
 
     <itemtypes>
 
@@ -112,15 +116,68 @@
                         <modifiers write="true" search="true" read="true" unique="true" />
                         <persistence type="property"/>
                     </attribute>
+                    <attribute qualifier="rg" type="java.lang.String">
+                        <modifiers write="true" read="true" unique="true" search="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="address" type="Address">
+                        <modifiers write="true" read="true" search="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="currency" type="Currency">
+                        <modifiers write="true" read="true" search="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="language" type="Language">
+                        <modifiers write="true" read="true" search="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="defaultIdentifications" type="DefaultIdentifications">
+                        <modifiers write="true" read="true" search="true"/>
+                        <persistence type="property"/>
+                    </attribute>
                 </attributes>
             </itemtype>
 
-            <itemtype code="Address" extends="Address" autocreate="false" generate="false">
-                <description>Extensão dos dados de endereço que o customer deve usar</description>
+            <itemtype code="Address" extends="Address" autocreate="false" generate="false" >
                 <attributes>
-
                 </attributes>
             </itemtype>
+
+            <itemtype code="Currency" extends="Currency" generate="false" autocreate="false">
+                <attributes>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Country" extends="Country" generate="false" autocreate="false">
+                <attributes>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Region" extends="Region" generate="false" autocreate="false">
+                <attributes>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Language" extends="Language" generate="false" autocreate="false">
+                <attributes>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="DefaultIdentifications">
+                <deployment table="default_identifications" typecode="15026"/>
+                <attributes>
+                    <attribute qualifier="defaultIdentificationNumber" type="java.lang.String">
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="defaultIdentificationType" type="java.lang.String">
+                        <modifiers read="true" write="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
         </typegroup>
 
     </itemtypes>
