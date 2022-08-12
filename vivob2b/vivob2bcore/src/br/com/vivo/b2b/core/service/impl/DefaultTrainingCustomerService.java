@@ -15,6 +15,7 @@ public class DefaultTrainingCustomerService implements TrainingCustomerService {
 
     @Override
     public List<CustomerModel> getAllCustomers() {
+        LOGGER.info("Service iniciou o trabalho de busca de customers");
         return trainingCustomerDao.getAllCustomers();
     }
 
