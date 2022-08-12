@@ -120,6 +120,8 @@
                         <modifiers write="true" read="true" unique="true" search="true"/>
                         <persistence type="property"/>
                     </attribute>
+
+
                     <attribute qualifier="address" type="Address">
                         <modifiers write="true" read="true" search="true"/>
                         <persistence type="property"/>

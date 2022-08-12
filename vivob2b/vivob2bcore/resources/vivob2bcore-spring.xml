@@ -538,4 +538,16 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+	<!--	Dao implementation-->
+	<alias name="defaultTrainingCustomerDao" alias="trainingCustomerDao"/>
+	<bean id="defaultTrainingCustomerDao" class="br.com.vivo.b2b.core.dao.impl.DefaultTrainingCustomerDao" parent="abstractItemDao" scope="tenant">
+	</bean>
+
+	<!--	Service implementation-->
+	<alias name="defaultTrainingCustomerService" alias="trainingCustomerService"/>
+	<bean id="defaultTrainingCustomerService" class="br.com.vivo.b2b.core.service.impl.DefaultTrainingCustomerService">
+		<property name="trainingCustomerDao" ref="trainingCustomerDao"/>
+	</bean>
+
 </beans>
