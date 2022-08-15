@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 12 de ago de 2022 17:32:39                  ---
+ * --- Generated at 15 de ago de 2022 15:35:29                  ---
  * ----------------------------------------------------------------
  */
 package org.vivob2bbackoffice.constants;
