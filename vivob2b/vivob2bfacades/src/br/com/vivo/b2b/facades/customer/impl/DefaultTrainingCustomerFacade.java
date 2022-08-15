@@ -26,9 +26,14 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
         TraninigCustomerResponseDTO responseDTO = new TraninigCustomerResponseDTO();
 
         allCustomers.forEach(c -> {
-            LOGGER.info("Facade converteu o customer: " + c.getName());
+//            LOGGER.info("Facade converteu o customer: " + c.getName());
+            LOGGER.info("ResponseDTO antes populate: " + responseDTO.getName());
+            listCustomers.forEach(i -> LOGGER.info("Lista de customer inicial: " + i.getName()));
             trainingCustomerPopulator.populate(c,responseDTO);
+            LOGGER.info("ResponseDTO DEPOIS populate: " + responseDTO.getName());
+
             listCustomers.add(responseDTO);
+            listCustomers.forEach(i -> LOGGER.info("Lista de customer após ser adicionado novo customer: " + i.getName()));
         });
         return listCustomers;
     }
