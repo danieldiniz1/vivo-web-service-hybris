@@ -8,6 +8,8 @@ import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 public class TrainingCustomerPopulator implements Populator<CustomerModel, TraninigCustomerResponseDTO> {
     @Override
     public void populate(CustomerModel source, TraninigCustomerResponseDTO target) throws ConversionException {
-        target.setCustomerModel(source);
+        target.setName(source.getName());
+        target.setCpf(source.getCpf());
+
     }
 }

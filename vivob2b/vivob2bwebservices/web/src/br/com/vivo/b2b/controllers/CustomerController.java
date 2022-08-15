@@ -4,6 +4,7 @@ import br.com.vivo.b2b.facades.customer.TrainingCustomerFacade;
 import br.com.vivo.b2b.facades.dto.TraninigCustomerResponseDTO;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,9 +27,11 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public void testeController(){
+    public ResponseEntity<List<TraninigCustomerResponseDTO>> testeController(){
         LOGGER.info("O Controller iniciou a chamada para buscar os customers");
         List<TraninigCustomerResponseDTO> allCustomers = trainingCustomerFacade.getAllCustomers();
-
+        return ResponseEntity.status(200).body(allCustomers);
     }
+
+
 }
