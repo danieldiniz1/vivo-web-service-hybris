@@ -8,4 +8,6 @@ import java.util.List;
 public interface TrainingCustomerDao extends Dao {
 
     List<CustomerModel> getAllCustomers();
+
+    CustomerModel buscaClientePorId(String customerId);
 }

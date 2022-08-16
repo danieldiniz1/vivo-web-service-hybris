@@ -38,6 +38,17 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
         return listCustomers;
     }
 
+    @Override
+    public TraninigCustomerResponseDTO buscarClientePorId(String customerId) {
+        LOGGER.info("Facade iniciou o projeto para buscar o cliente por id");
+
+        TraninigCustomerResponseDTO traninigCustomerResponseDTO = new TraninigCustomerResponseDTO();
+        trainingCustomerPopulator.populate(trainingCustomerService.buscarClientePorId(customerId),traninigCustomerResponseDTO);
+
+        return traninigCustomerResponseDTO;
+    }
+
+
     public TrainingCustomerService getTrainingCustomerService() {
         return trainingCustomerService;
     }

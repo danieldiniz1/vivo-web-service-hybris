@@ -6,10 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Collections;
@@ -26,12 +23,16 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<TraninigCustomerResponseDTO>> testeController(){
+    public ResponseEntity<List<TraninigCustomerResponseDTO>> buscaTodosClientes(){
         LOGGER.info("O Controller iniciou a chamada para buscar os customers");
         List<TraninigCustomerResponseDTO> allCustomers = trainingCustomerFacade.getAllCustomers();
         return ResponseEntity.status(200).body(allCustomers);
     }
 
-
+    @GetMapping("/{customerId}")
+    @ResponseBody
+    public ResponseEntity<TraninigCustomerResponseDTO> buscaClientePorId(@PathVariable String customerId){
+        LOGGER.info("Iniciando busca de customer com id: " + customerId);
+        return ResponseEntity.ok().body(trainingCustomerFacade.buscarClientePorId(customerId));
+    }
 }
