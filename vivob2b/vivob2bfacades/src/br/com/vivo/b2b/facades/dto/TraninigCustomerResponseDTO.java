@@ -14,6 +14,10 @@ public class TraninigCustomerResponseDTO {
 
     private AdrressDTO adrressDTO;
 
+    private CurrencyDTO currencyDTO;
+    private LanguageDTO languageDTO;
+
+
     public TraninigCustomerResponseDTO() {
     }
 
@@ -39,5 +43,21 @@ public class TraninigCustomerResponseDTO {
 
     public void setAdrressDTO(AdrressDTO adrressDTO) {
         this.adrressDTO = adrressDTO;
+    }
+
+    public CurrencyDTO getCurrencyDTO() {
+        return currencyDTO;
+    }
+
+    public void setCurrencyDTO(CurrencyDTO currencyDTO) {
+        this.currencyDTO = currencyDTO;
+    }
+
+    public LanguageDTO getLanguageDTO() {
+        return languageDTO;
+    }
+
+    public void setLanguageDTO(LanguageDTO languageDTO) {
+        this.languageDTO = languageDTO;
     }
 }
