@@ -31,6 +31,9 @@ public class TrainingCustomerPopulator implements Populator<CustomerModel, Trani
             currency = new CurrencyModel();
         }
         CurrencyDTO currencyDTO = new CurrencyDTO();
+        currencyDTO.setIsoCode(currency.getIsocode() == null ? "Default " : currency.getIsocode());
+        currencyDTO.setSimbol(currency.getSymbol() == null ? "Default " : currency.getSymbol());
+        currencyDTO.setActive(currency.getActive() == null ? "Default " : currency.getActive().toString());
         return currencyDTO;
     }
 
@@ -39,6 +42,7 @@ public class TrainingCustomerPopulator implements Populator<CustomerModel, Trani
             language = new LanguageModel();
         }
         LanguageDTO languageDTO = new LanguageDTO();
+        languageDTO.setIsoCode(language.getIsocode() == null ? "Default " : language.getIsocode());
         return  languageDTO;
     }
 
