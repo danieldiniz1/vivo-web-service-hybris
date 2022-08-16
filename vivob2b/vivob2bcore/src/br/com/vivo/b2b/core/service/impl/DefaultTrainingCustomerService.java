@@ -19,6 +19,12 @@ public class DefaultTrainingCustomerService implements TrainingCustomerService {
         return trainingCustomerDao.getAllCustomers();
     }
 
+    @Override
+    public CustomerModel buscarClientePorId(String customerId) {
+        LOGGER.info("Service iniciou o trabalho de busca do cliente.");
+        return trainingCustomerDao.buscaClientePorId(customerId);
+    }
+
     public TrainingCustomerDao getTrainingCustomerDao() {
         return trainingCustomerDao;
     }

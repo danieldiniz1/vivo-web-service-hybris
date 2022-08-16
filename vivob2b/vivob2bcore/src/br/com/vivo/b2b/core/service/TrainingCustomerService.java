@@ -7,4 +7,6 @@ import java.util.List;
 public interface TrainingCustomerService {
 
     List<CustomerModel> getAllCustomers();
+
+    CustomerModel buscarClientePorId(String customerId);
 }
