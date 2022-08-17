@@ -3,8 +3,11 @@ package br.com.vivo.b2b.facades.customer.impl;
 import br.com.vivo.b2b.core.service.TrainingCustomerService;
 import br.com.vivo.b2b.facades.customer.TrainingCustomerFacade;
 import br.com.vivo.b2b.facades.dto.TraninigCustomerResponseDTO;
+import br.com.vivo.b2b.facades.form.TrainingCustomerRequestForm;
 import br.com.vivo.b2b.facades.populators.TrainingCustomerPopulator;
+import br.com.vivo.b2b.facades.populators.TrainingCustomerReversePopulator;
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.model.ModelService;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -17,6 +20,10 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
     private TrainingCustomerService trainingCustomerService;
 
     private TrainingCustomerPopulator trainingCustomerPopulator;
+
+    private ModelService modelService;
+
+    private TrainingCustomerReversePopulator trainingCustomerReversePopulator;
 
     @Override
     public List<TraninigCustomerResponseDTO> getAllCustomers() {
@@ -48,6 +55,18 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
         return traninigCustomerResponseDTO;
     }
 
+    @Override
+    public TraninigCustomerResponseDTO cadastrarNovoCliente(TrainingCustomerRequestForm customerForm) {
+        convertFormToModel(customerForm);
+        return null;
+    }
+
+    private void convertFormToModel(TrainingCustomerRequestForm customerForm) {
+        CustomerModel customer = modelService.create(CustomerModel.class);
+        trainingCustomerReversePopulator.populate(customerForm,customer);
+
+    }
+
 
     public TrainingCustomerService getTrainingCustomerService() {
         return trainingCustomerService;
@@ -63,5 +82,21 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
 
     public void setTrainingCustomerPopulator(TrainingCustomerPopulator trainingCustomerPopulator) {
         this.trainingCustomerPopulator = trainingCustomerPopulator;
+    }
+
+    public ModelService getModelService() {
+        return modelService;
+    }
+
+    public void setModelService(ModelService modelService) {
+        this.modelService = modelService;
+    }
+
+    public TrainingCustomerReversePopulator getTrainingCustomerReversePopulator() {
+        return trainingCustomerReversePopulator;
+    }
+
+    public void setTrainingCustomerReversePopulator(TrainingCustomerReversePopulator trainingCustomerReversePopulator) {
+        this.trainingCustomerReversePopulator = trainingCustomerReversePopulator;
     }
 }

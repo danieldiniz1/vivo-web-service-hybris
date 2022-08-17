@@ -44,6 +44,7 @@ public class CustomerController {
         LOGGER.info("cpf: " + customerForm.getCpf());
         LOGGER.info("whatsapp notifications: " + customerForm.isWhatsappNotifications());
         customerForm.getIdentifications().forEach(c -> LOGGER.info(" numbers: " + c.getIdentificationNumber() + ", type: " + c.getIdentificationType()));
+        trainingCustomerFacade.cadastrarNovoCliente(customerForm);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

@@ -190,5 +190,7 @@
 	<bean id="defaultTrainingCustomerFacade" class="br.com.vivo.b2b.facades.customer.impl.DefaultTrainingCustomerFacade">
 		<property name="trainingCustomerPopulator" ref="trainingCustomerPopulator"/>
 		<property name="trainingCustomerService" ref="trainingCustomerService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="trainingCustomerReversePopulator" ref="trainingCustomerReversePopulator"/>
 	</bean>
 </beans>
