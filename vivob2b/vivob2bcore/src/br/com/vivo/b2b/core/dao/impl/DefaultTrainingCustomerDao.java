@@ -42,4 +42,9 @@ public class DefaultTrainingCustomerDao extends AbstractItemDao implements Train
         LOGGER.info("nome do cliente encontrado: " + customer.getResult().get(0).getName());
         return customer.getResult().get(0);
     }
+
+    @Override
+    public void cadastrarNovoCliente(CustomerModel customerModel) {
+        getModelService().save(customerModel);
+    }
 }

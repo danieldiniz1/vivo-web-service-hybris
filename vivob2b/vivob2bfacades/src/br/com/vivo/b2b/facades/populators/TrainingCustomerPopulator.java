@@ -47,6 +47,9 @@ public class TrainingCustomerPopulator implements Populator<CustomerModel, Trani
     }
 
     private AdrressDTO convertToAddresDTO(AddressModel address) {
+        if (address == null){
+            address = new AddressModel();
+        }
         AdrressDTO addressDTO = new AdrressDTO();
         addressDTO.setApartament(address.getAppartment() == null ? "Default " : address.getAppartment());
         addressDTO.setBillingAddres(address.getBillingAddress() == null ? "Default " : address.getBillingAddress().toString());
@@ -81,9 +84,12 @@ public class TrainingCustomerPopulator implements Populator<CustomerModel, Trani
     }
 
     private CountryDTO convertToCountryDto(CountryModel country) {
+        if (country == null){
+            country = new CountryModel();
+        }
         CountryDTO countryDTO = new CountryDTO();
         countryDTO.setIsoCode(country.getIsocode() == null ? "Default " : country.getIsocode());
-        countryDTO.setName(country.getName() == null ? "Default " : country.getName());
+        countryDTO.setName("Default");
         return countryDTO;
     }
 

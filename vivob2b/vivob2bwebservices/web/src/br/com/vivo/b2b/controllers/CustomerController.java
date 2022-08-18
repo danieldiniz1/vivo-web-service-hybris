@@ -2,6 +2,7 @@ package br.com.vivo.b2b.controllers;
 
 import br.com.vivo.b2b.facades.customer.TrainingCustomerFacade;
 import br.com.vivo.b2b.facades.dto.TraninigCustomerResponseDTO;
+import br.com.vivo.b2b.facades.form.TrainingCustomerRequestForm;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -34,5 +34,17 @@ public class CustomerController {
     public ResponseEntity<TraninigCustomerResponseDTO> buscaClientePorId(@PathVariable String customerId){
         LOGGER.info("Iniciando busca de customer com id: " + customerId);
         return ResponseEntity.ok().body(trainingCustomerFacade.buscarClientePorId(customerId));
+    }
+
+    @PostMapping
+    @ResponseBody
+    public ResponseEntity<TraninigCustomerResponseDTO> cadastraCliente(@RequestBody TrainingCustomerRequestForm customerForm){
+        LOGGER.info("Company name: " + customerForm.getAddress().getCompanyName());
+        LOGGER.info("country isocode: " + customerForm.getAddress().getCountry().getIsocode());
+        LOGGER.info("cpf: " + customerForm.getCpf());
+        LOGGER.info("whatsapp notifications: " + customerForm.isWhatsappNotifications());
+        customerForm.getIdentifications().forEach(c -> LOGGER.info(" numbers: " + c.getIdentificationNumber() + ", type: " + c.getIdentificationType()));
+        ;
+        return ResponseEntity.status(HttpStatus.CREATED).body(trainingCustomerFacade.cadastrarNovoCliente(customerForm));
     }
 }
