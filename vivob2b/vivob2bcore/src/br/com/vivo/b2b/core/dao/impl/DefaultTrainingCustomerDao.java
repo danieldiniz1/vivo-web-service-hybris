@@ -47,4 +47,16 @@ public class DefaultTrainingCustomerDao extends AbstractItemDao implements Train
     public void cadastrarNovoCliente(CustomerModel customerModel) {
         getModelService().save(customerModel);
     }
+
+    @Override
+    public void deletarClientePorId(String customerId) {
+        LOGGER.info("iniciando processo de deleção de cliente com id: " + customerId);
+
+        CustomerModel customerModelQueVaiSerDeletado = buscaClientePorId(customerId);
+        LOGGER.info("O nome do cliente que vai ser deletado é: " + customerModelQueVaiSerDeletado.getName());
+        LOGGER.info("A Pk do cliente que vai ser deletado é: " + customerModelQueVaiSerDeletado.getPk().toString());
+        getModelService().remove(customerModelQueVaiSerDeletado.getPk());
+        LOGGER.info("O cliente foi removido");
+
+    }
 }

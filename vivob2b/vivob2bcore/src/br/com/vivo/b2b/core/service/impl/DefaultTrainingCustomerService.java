@@ -30,6 +30,11 @@ public class DefaultTrainingCustomerService implements TrainingCustomerService {
         trainingCustomerDao.cadastrarNovoCliente(customerModel);
     }
 
+    @Override
+    public void deletarClientePorId(String customerId) {
+        trainingCustomerDao.deletarClientePorId(customerId);
+    }
+
     public TrainingCustomerDao getTrainingCustomerDao() {
         return trainingCustomerDao;
     }

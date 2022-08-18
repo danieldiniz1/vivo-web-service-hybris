@@ -44,7 +44,14 @@ public class CustomerController {
         LOGGER.info("cpf: " + customerForm.getCpf());
         LOGGER.info("whatsapp notifications: " + customerForm.isWhatsappNotifications());
         customerForm.getIdentifications().forEach(c -> LOGGER.info(" numbers: " + c.getIdentificationNumber() + ", type: " + c.getIdentificationType()));
-        ;
+
         return ResponseEntity.status(HttpStatus.CREATED).body(trainingCustomerFacade.cadastrarNovoCliente(customerForm));
+    }
+    @DeleteMapping("/{customerId}")
+    @ResponseBody
+    public ResponseEntity deletarClientePorCustomerId(@PathVariable String customerId){
+        LOGGER.info("Deletando o cliente de id: " + customerId);
+        trainingCustomerFacade.deletarClientePorId(customerId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
