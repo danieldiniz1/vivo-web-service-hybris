@@ -51,6 +51,7 @@ public class CustomerController {
     @ResponseBody
     public ResponseEntity deletarClientePorCustomerId(@PathVariable String customerId){
         LOGGER.info("Deletando o cliente de id: " + customerId);
+        trainingCustomerFacade.deletarClientePorId(customerId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

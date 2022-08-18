@@ -11,4 +11,6 @@ public interface TrainingCustomerService {
     CustomerModel buscarClientePorId(String customerId);
 
     void cadastrarNovoCliente(CustomerModel convertFormToModel);
+
+    void deletarClientePorId(String customerId);
 }
