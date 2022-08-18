@@ -66,6 +66,11 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
         trainingCustomerService.deletarClientePorId(customerId);
     }
 
+    @Override
+    public void atualizarCustomer(TrainingCustomerRequestForm form) {
+        trainingCustomerService.atualizarCliente(form.getId(), form.getCpf());
+    }
+
     private CustomerModel convertFormToModel(TrainingCustomerRequestForm customerForm) {
         CustomerModel customer = modelService.create(CustomerModel.class);
         trainingCustomerReversePopulator.populate(customerForm,customer);

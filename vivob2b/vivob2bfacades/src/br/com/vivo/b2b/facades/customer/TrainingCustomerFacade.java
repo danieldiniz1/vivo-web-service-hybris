@@ -14,4 +14,6 @@ public interface TrainingCustomerFacade {
     TraninigCustomerResponseDTO cadastrarNovoCliente(TrainingCustomerRequestForm customerForm);
 
     void deletarClientePorId(String customerId);
+
+    void atualizarCustomer(TrainingCustomerRequestForm form);
 }

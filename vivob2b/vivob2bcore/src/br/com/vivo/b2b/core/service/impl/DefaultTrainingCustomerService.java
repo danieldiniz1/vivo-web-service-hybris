@@ -35,6 +35,11 @@ public class DefaultTrainingCustomerService implements TrainingCustomerService {
         trainingCustomerDao.deletarClientePorId(customerId);
     }
 
+    @Override
+    public void atualizarCliente(String id, String cpf) {
+        trainingCustomerDao.AtualizarClientePorId(id,cpf);
+    }
+
     public TrainingCustomerDao getTrainingCustomerDao() {
         return trainingCustomerDao;
     }

@@ -13,4 +13,6 @@ public interface TrainingCustomerService {
     void cadastrarNovoCliente(CustomerModel convertFormToModel);
 
     void deletarClientePorId(String customerId);
+
+    void atualizarCliente(String id, String cpf);
 }

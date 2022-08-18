@@ -54,4 +54,14 @@ public class CustomerController {
         trainingCustomerFacade.deletarClientePorId(customerId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+
+    @PutMapping
+    @ResponseBody
+    public ResponseEntity atualizarClientePorCustomerId(@RequestBody TrainingCustomerRequestForm trainingCustomerRequestForm){
+        LOGGER.info("Atualizando o cliente de id: " + trainingCustomerRequestForm.getId());
+        trainingCustomerFacade.atualizarCustomer(trainingCustomerRequestForm);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }
