@@ -59,4 +59,17 @@ public class DefaultTrainingCustomerDao extends AbstractItemDao implements Train
         LOGGER.info("O cliente foi removido");
 
     }
+
+    @Override
+    public void AtualizarClientePorId(String id, String cpf) {
+        CustomerModel customerModelASerAtualizado = buscaClientePorId(id);
+        imprimeLogAtualizacao("antes", customerModelASerAtualizado.getCpf());
+        customerModelASerAtualizado.setCpf(cpf);
+        imprimeLogAtualizacao("depois", cpf);
+        getModelService().save(customerModelASerAtualizado);
+    }
+
+    private void imprimeLogAtualizacao(String periodo, String cpf) {
+        LOGGER.info("O cpf no " + periodo + " é: " + cpf);
+    }
 }

@@ -14,4 +14,6 @@ public interface TrainingCustomerDao extends Dao {
     void cadastrarNovoCliente(CustomerModel customerModel);
 
     void deletarClientePorId(String customerId);
+
+    void AtualizarClientePorId(String id, String cpf);
 }
