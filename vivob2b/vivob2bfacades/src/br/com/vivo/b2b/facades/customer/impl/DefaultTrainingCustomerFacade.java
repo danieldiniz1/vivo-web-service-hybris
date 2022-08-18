@@ -57,14 +57,14 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
 
     @Override
     public TraninigCustomerResponseDTO cadastrarNovoCliente(TrainingCustomerRequestForm customerForm) {
-        convertFormToModel(customerForm);
-        return null;
+        trainingCustomerService.cadastrarNovoCliente(convertFormToModel(customerForm));
+        return buscarClientePorId(customerForm.getId());
     }
 
-    private void convertFormToModel(TrainingCustomerRequestForm customerForm) {
+    private CustomerModel convertFormToModel(TrainingCustomerRequestForm customerForm) {
         CustomerModel customer = modelService.create(CustomerModel.class);
         trainingCustomerReversePopulator.populate(customerForm,customer);
-
+        return customer;
     }
 
 

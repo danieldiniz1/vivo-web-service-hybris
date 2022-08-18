@@ -183,7 +183,9 @@
 
 	<bean id="genderData" class="br.com.vivo.b2b.facades.product.data.GenderData" scope="prototype"/>
 
-	<bean id="trainingCustomerReversePopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerReversePopulator"/>
+	<bean id="trainingCustomerReversePopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerReversePopulator">
+		<property name="modelService" ref="modelService"/>
+	</bean>
 	<bean id="trainingCustomerPopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerPopulator"/>
 
 	<alias name="defaultTrainingCustomerFacade" alias="trainingCustomerFacade"/>

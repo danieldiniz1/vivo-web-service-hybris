@@ -25,6 +25,11 @@ public class DefaultTrainingCustomerService implements TrainingCustomerService {
         return trainingCustomerDao.buscaClientePorId(customerId);
     }
 
+    @Override
+    public void cadastrarNovoCliente(CustomerModel customerModel) {
+        trainingCustomerDao.cadastrarNovoCliente(customerModel);
+    }
+
     public TrainingCustomerDao getTrainingCustomerDao() {
         return trainingCustomerDao;
     }

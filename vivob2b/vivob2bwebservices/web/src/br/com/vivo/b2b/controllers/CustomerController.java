@@ -38,13 +38,13 @@ public class CustomerController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity cadastraCliente(@RequestBody TrainingCustomerRequestForm customerForm){
+    public ResponseEntity<TraninigCustomerResponseDTO> cadastraCliente(@RequestBody TrainingCustomerRequestForm customerForm){
         LOGGER.info("Company name: " + customerForm.getAddress().getCompanyName());
         LOGGER.info("country isocode: " + customerForm.getAddress().getCountry().getIsocode());
         LOGGER.info("cpf: " + customerForm.getCpf());
         LOGGER.info("whatsapp notifications: " + customerForm.isWhatsappNotifications());
         customerForm.getIdentifications().forEach(c -> LOGGER.info(" numbers: " + c.getIdentificationNumber() + ", type: " + c.getIdentificationType()));
-        trainingCustomerFacade.cadastrarNovoCliente(customerForm);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        ;
+        return ResponseEntity.status(HttpStatus.CREATED).body(trainingCustomerFacade.cadastrarNovoCliente(customerForm));
     }
 }

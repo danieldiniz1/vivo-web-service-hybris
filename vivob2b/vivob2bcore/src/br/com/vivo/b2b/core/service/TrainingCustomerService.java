@@ -9,4 +9,6 @@ public interface TrainingCustomerService {
     List<CustomerModel> getAllCustomers();
 
     CustomerModel buscarClientePorId(String customerId);
+
+    void cadastrarNovoCliente(CustomerModel convertFormToModel);
 }
