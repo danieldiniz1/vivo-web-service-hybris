@@ -3,6 +3,10 @@ package br.com.vivo.b2b.controllers;
 import br.com.vivo.b2b.facades.customer.TrainingCustomerFacade;
 import br.com.vivo.b2b.facades.dto.TraninigCustomerResponseDTO;
 import br.com.vivo.b2b.facades.form.TrainingCustomerRequestForm;
+import de.hybris.platform.webservicescommons.swagger.ApiBaseSiteIdParam;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/customer")
+@Api(tags = "Customer")
 public class CustomerController {
 
     private static final Logger LOGGER = Logger.getLogger(CustomerController.class);
@@ -29,13 +34,19 @@ public class CustomerController {
         return ResponseEntity.status(200).body(allCustomers);
     }
 
+    @ApiOperation(nickname="getCustomerDetails", value="Get a Specific Customer Details",
+            notes="Return a specific Custumer based on Id",authorizations={@Authorization
+            (value="oauth2_client_credentials")})
     @GetMapping("/{customerId}")
     @ResponseBody
     public ResponseEntity<TraninigCustomerResponseDTO> buscaClientePorId(@PathVariable String customerId){
         LOGGER.info("Iniciando busca de customer com id: " + customerId);
         return ResponseEntity.ok().body(trainingCustomerFacade.buscarClientePorId(customerId));
     }
-
+    @ApiOperation(nickname="SubscribeCustomer", value="Subscribe a new Customer",
+            notes="Subscribe new customer based form in body",authorizations={@Authorization
+            (value="oauth2_client_credentials")})
+//    @ApiBaseSiteIdParam
     @PostMapping
     @ResponseBody
     public ResponseEntity<TraninigCustomerResponseDTO> cadastraCliente(@RequestBody TrainingCustomerRequestForm customerForm){
@@ -47,6 +58,11 @@ public class CustomerController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(trainingCustomerFacade.cadastrarNovoCliente(customerForm));
     }
+
+    @ApiOperation(nickname="DeleteCustomer", value="Delete customer by ID",
+            notes="don't have body return",authorizations={@Authorization
+            (value="oauth2_client_credentials")})
+    @ApiBaseSiteIdParam
     @DeleteMapping("/{customerId}")
     @ResponseBody
     public ResponseEntity deletarClientePorCustomerId(@PathVariable String customerId){
@@ -56,6 +72,9 @@ public class CustomerController {
     }
 
 
+    @ApiOperation(nickname="UpdateCustomer", value="Update customer by ID",
+            notes="don't have body return",authorizations={@Authorization
+            (value="oauth2_client_credentials")})
     @PutMapping
     @ResponseBody
     public ResponseEntity atualizarClientePorCustomerId(@RequestBody TrainingCustomerRequestForm trainingCustomerRequestForm){
