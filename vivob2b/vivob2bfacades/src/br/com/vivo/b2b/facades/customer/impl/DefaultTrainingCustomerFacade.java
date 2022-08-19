@@ -50,9 +50,14 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
         LOGGER.info("Facade iniciou o projeto para buscar o cliente por id");
 
         TraninigCustomerResponseDTO traninigCustomerResponseDTO = new TraninigCustomerResponseDTO();
-        trainingCustomerPopulator.populate(trainingCustomerService.buscarClientePorId(customerId),traninigCustomerResponseDTO);
+        convertModelToDTO(trainingCustomerService.buscarClientePorId(customerId), traninigCustomerResponseDTO);
+//        trainingCustomerPopulator.populate(trainingCustomerService.buscarClientePorId(customerId),traninigCustomerResponseDTO);
 
         return traninigCustomerResponseDTO;
+    }
+
+    private void convertModelToDTO(CustomerModel customerModel, TraninigCustomerResponseDTO traninigCustomerResponseDTO) {
+        trainingCustomerPopulator.populate(customerModel, traninigCustomerResponseDTO);
     }
 
     @Override
