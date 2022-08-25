@@ -190,6 +190,17 @@
 
 	<bean id="trainingCustomerDataPopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerDataPopulator" parent="customerPopulator"/>
 
+	<bean id="trainingConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+				  value="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="trainingCustomerDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+
 	<alias name="defaultTrainingCustomerFacade" alias="trainingCustomerFacade"/>
 	<bean id="defaultTrainingCustomerFacade" class="br.com.vivo.b2b.facades.customer.impl.DefaultTrainingCustomerFacade">
 		<property name="trainingCustomerPopulator" ref="trainingCustomerPopulator"/>
@@ -198,8 +209,8 @@
 		<property name="trainingCustomerReversePopulator" ref="trainingCustomerReversePopulator"/>
 	</bean>
 
-	<alias name="trainingCustomerData" alias="trainingCustomerData"/>
-	<bean id="trainingCustomerData" class="br.com.vivo.b2b.facades.trainigcustomerdata.impl.DefaultTrainingCustomerData">
+	<alias name="defaultTrainingCustomerData" alias="trainingCustomerData"/>
+	<bean id="defaultTrainingCustomerData" class="br.com.vivo.b2b.facades.trainigcustomerdata.impl.DefaultTrainingCustomerData">
 
 	</bean>
 </beans>
