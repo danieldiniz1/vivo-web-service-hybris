@@ -5,4 +5,6 @@ import de.hybris.platform.commercefacades.user.data.CustomerData;
 public interface TrainingCustomerDataFacade {
 
     CustomerData buscarClientePorId(String customerId);
+
+    CustomerData criarNovoCliente(CustomerData converterToCustomerData);
 }

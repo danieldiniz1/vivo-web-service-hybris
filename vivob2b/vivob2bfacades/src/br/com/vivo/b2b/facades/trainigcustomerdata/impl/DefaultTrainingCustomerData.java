@@ -24,6 +24,11 @@ public class DefaultTrainingCustomerData implements TrainingCustomerDataFacade {
         return customerDataConvertido;
     }
 
+    @Override
+    public CustomerData criarNovoCliente(CustomerData converterToCustomerData) {
+        return null;
+    }
+
     public TrainingCustomerService getTrainingCustomerService() {
         return trainingCustomerService;
     }
