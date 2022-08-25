@@ -195,4 +195,9 @@
 		<property name="modelService" ref="modelService"/>
 		<property name="trainingCustomerReversePopulator" ref="trainingCustomerReversePopulator"/>
 	</bean>
+
+	<alias name="trainingCustomerData" alias="trainingCustomerData"/>
+	<bean id="trainingCustomerData" class="br.com.vivo.b2b.facades.trainigcustomerdata.impl.DefaultTrainingCustomerData">
+
+	</bean>
 </beans>
