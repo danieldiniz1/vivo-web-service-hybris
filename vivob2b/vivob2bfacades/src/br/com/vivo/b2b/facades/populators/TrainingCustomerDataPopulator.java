@@ -10,8 +10,8 @@ public class TrainingCustomerDataPopulator extends CustomerPopulator implements 
 
     @Override
     public void populate(CustomerModel source, CustomerData target) {
-        super.populate(source, target);
         target.setCpf(source.getCpf());
         target.setRg(source.getRg());
+        super.populate(source, target);
     }
 }

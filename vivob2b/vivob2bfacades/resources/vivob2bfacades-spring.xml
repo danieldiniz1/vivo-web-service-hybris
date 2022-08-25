@@ -211,6 +211,7 @@
 
 	<alias name="defaultTrainingCustomerData" alias="trainingCustomerData"/>
 	<bean id="defaultTrainingCustomerData" class="br.com.vivo.b2b.facades.trainigcustomerdata.impl.DefaultTrainingCustomerData">
-
+		<property name="trainingConverter" ref="trainingConverter"/>
+		<property name="trainingCustomerService" ref="trainingCustomerService"/>
 	</bean>
 </beans>
