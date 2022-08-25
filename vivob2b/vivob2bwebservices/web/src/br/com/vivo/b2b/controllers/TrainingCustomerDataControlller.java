@@ -29,15 +29,15 @@ public class TrainingCustomerDataControlller {
         CustomerData customerData = trainingCustomerData.buscarClientePorId(customerId);
         LOGGER.info("customerdata name: " + customerData.getName());
         CustomerDataDTO customerDataDTO = new CustomerDataDTO();
-        converter(customerData,customerDataDTO);
+        converterToDTOResponse(customerData,customerDataDTO);
 
         return ResponseEntity.status(HttpStatus.OK).body(customerDataDTO) ;
     }
 
-    private void converter(CustomerData customerData, CustomerDataDTO customerDataDTO) {
-       customerDataDTO.setCpf(customerDataDTO.getCpf());
-       customerDataDTO.setRg(customerDataDTO.getRg());
-       customerDataDTO.setName(customerData.getName());
+    private void converterToDTOResponse(CustomerData source, CustomerDataDTO target) {
+       target.setCpf(source.getCpf());
+       target.setRg(source.getRg());
+       target.setName(source.getName());
     }
 
 }
