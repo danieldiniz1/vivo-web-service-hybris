@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 18 de ago de 2022 10:24:18                  ---
+ * --- Generated at 19 de ago de 2022 09:29:48                  ---
  * ----------------------------------------------------------------
  */
 package br.com.vivo.b2b.constants;

@@ -51,7 +51,6 @@ public class DefaultTrainingCustomerFacade implements TrainingCustomerFacade {
 
         TraninigCustomerResponseDTO traninigCustomerResponseDTO = new TraninigCustomerResponseDTO();
         convertModelToDTO(trainingCustomerService.buscarClientePorId(customerId), traninigCustomerResponseDTO);
-//        trainingCustomerPopulator.populate(trainingCustomerService.buscarClientePorId(customerId),traninigCustomerResponseDTO);
 
         return traninigCustomerResponseDTO;
     }
