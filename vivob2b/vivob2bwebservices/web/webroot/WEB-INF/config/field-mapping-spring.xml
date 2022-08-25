@@ -120,6 +120,18 @@
 		</property>
 	</bean>
 
+	<bean parent="fieldSetLevelMapping" id="customerDataFieldSetLevelMapping">
+		<property name="dtoClass" value="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC" value="rg,cpf,email"/>
+				<entry key="DEFAULT" value="rg,cpf,email"/>
+				<entry key="FULL" value="rg,cpf,email"/>
+			</map>
+		</property>
+	</bean>
+
+
 	<bean parent="fieldSetLevelMapping" id="usersListWsDTOFieldSetLevelMapping">
 		<property name="dtoClass"
 		          value="br.com.vivo.b2b.dto.UsersListWsDTO"/>

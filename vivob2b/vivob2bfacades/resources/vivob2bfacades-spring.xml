@@ -188,17 +188,37 @@
 	</bean>
 	<bean id="trainingCustomerPopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerPopulator"/>
 
-	<bean id="trainingCustomerDataPopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerDataPopulator" parent="customerPopulator"/>
+	<alias name="trainingCustomerDataPopulator" alias="customerPopulator"/>
+	<bean id="trainingCustomerDataPopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerDataPopulator" parent="defaultCustomerPopulator"/>
 
-	<bean id="trainingConverter" parent="abstractPopulatingConverter">
-		<property name="targetClass"
-				  value="de.hybris.platform.commercefacades.user.data.CustomerData"/>
-		<property name="populators">
-			<list>
-				<ref bean="trainingCustomerDataPopulator"/>
-			</list>
-		</property>
-	</bean>
+	<alias name="trainingCustomerDataReversePopulator" alias="customerReversePopulator"/>
+	<bean id="trainingCustomerDataReversePopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerDataReversePopulator" parent="defaultCustomerReversePopulator"/>
+
+
+<!--	<bean id="trainingReverseConverter" parent="abstractPopulatingConverter">-->
+<!--		<property name="targetClass"-->
+<!--				  value="de.hybris.platform.core.model.user.CustomerModel"/>-->
+<!--		<property name="populators">-->
+<!--			<list>-->
+<!--				<ref bean="trainingCustomerDataReversePopulator"/>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
+
+<!--	<bean parent="modifyPopulatorList">-->
+<!--		<property name="list" ref="trainingReverseConverter"/>-->
+<!--		<property name="add" ref="trainingCustomerDataReversePopulator"/>-->
+<!--	</bean>-->
+
+<!--	<bean id="trainingConverter" parent="abstractPopulatingConverter">-->
+<!--		<property name="targetClass"-->
+<!--				  value="de.hybris.platform.commercefacades.user.data.CustomerData"/>-->
+<!--		<property name="populators">-->
+<!--			<list>-->
+<!--				<ref bean="trainingCustomerDataPopulator"/>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
 
 
 	<alias name="defaultTrainingCustomerFacade" alias="trainingCustomerFacade"/>
@@ -210,8 +230,9 @@
 	</bean>
 
 	<alias name="defaultTrainingCustomerData" alias="trainingCustomerData"/>
-	<bean id="defaultTrainingCustomerData" class="br.com.vivo.b2b.facades.trainigcustomerdata.impl.DefaultTrainingCustomerData">
-		<property name="trainingConverter" ref="trainingConverter"/>
+	<bean id="defaultTrainingCustomerData" class="br.com.vivo.b2b.facades.trainigcustomerdata.impl.DefaultTrainingCustomerDataFacade">
+		<property name="customerConverter" ref="customerConverter"/>
 		<property name="trainingCustomerService" ref="trainingCustomerService"/>
+		<property name="customerReverseConverter" ref="customerReverseConverter"/>
 	</bean>
 </beans>

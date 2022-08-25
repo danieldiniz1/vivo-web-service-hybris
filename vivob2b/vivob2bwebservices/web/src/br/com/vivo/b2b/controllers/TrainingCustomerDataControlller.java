@@ -5,6 +5,7 @@ import br.com.vivo.b2b.facades.form.TrainingCustomerRequestForm;
 import br.com.vivo.b2b.facades.trainigcustomerdata.TrainingCustomerDataFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.webservicescommons.mapping.DataMapper;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,30 +20,38 @@ public class TrainingCustomerDataControlller {
     @Resource(name = "trainingCustomerData")
     private TrainingCustomerDataFacade trainingCustomerData;
 
+    @Resource(name = "dataMapper")
+    private DataMapper dataMapper;
+
 
     private static final Logger LOGGER = Logger.getLogger(TrainingCustomerDataControlller.class);
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<CustomerDataDTO> buscaCustomerPorId(@PathVariable String customerId){
+    public ResponseEntity buscaCustomerPorId(@PathVariable String customerId,@RequestParam(defaultValue = "BASIC") String fields){
         LOGGER.info("Controller recebe customerId: " +customerId);
         LOGGER.info("iniciando chamada do facade" +customerId);
         CustomerData customerData = trainingCustomerData.buscarClientePorId(customerId);
+
         LOGGER.info("customerdata name: " + customerData.getName());
         CustomerDataDTO customerDataDTO = new CustomerDataDTO();
         converterToDTOResponse(customerData,customerDataDTO);
-
-        return ResponseEntity.status(HttpStatus.OK).body(customerDataDTO) ;
+        CustomerData response = dataMapper.map(customerData,CustomerData.class,fields);
+        return ResponseEntity.status(HttpStatus.OK).body(customerDataDTO);
     }
 
     @PostMapping
     public ResponseEntity<CustomerDataDTO> cadastraNovoCliente(@RequestBody TrainingCustomerRequestForm form){
         CustomerDataDTO dataDTO = new CustomerDataDTO();
+        CustomerData customerData = trainingCustomerData.criarNovoCliente(converterToCustomerData(form));
+        LOGGER.info("Cliente criado com sucesso");
         try {
-            CustomerData customerData = trainingCustomerData.criarNovoCliente(converterToCustomerData(form));
-            LOGGER.info("Cliente criado com sucesso");
+
             converterToDTOResponse(customerData,dataDTO);
             return ResponseEntity.ok(dataDTO);
         } catch (Exception ex){
+            LOGGER.error("cause: " + ex.getCause());
+            LOGGER.error("message: " + ex.getMessage());
+
             return ResponseEntity.badRequest().build();
         }
     }
@@ -61,6 +70,8 @@ public class TrainingCustomerDataControlller {
         LOGGER.info("convertendo form para DATA e rg: " + customerData.getRg());
         customerData.setName(form.getName());
         LOGGER.info("convertendo form para DATA com nome: " + customerData.getName());
+        customerData.setFirstName(form.getFirstName());
+        customerData.setLastName(form.getLastName());
         return customerData;
     }
 

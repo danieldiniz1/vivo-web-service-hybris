@@ -46,6 +46,7 @@ public class DefaultTrainingCustomerDao extends AbstractItemDao implements Train
     @Override
     public void cadastrarNovoCliente(CustomerModel customerModel) {
         getModelService().save(customerModel);
+        LOGGER.info("cliente foi criado com sucesso: " + customerModel.getName());
     }
 
     @Override

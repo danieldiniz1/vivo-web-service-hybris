@@ -16,6 +16,6 @@
 	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
 		<property name="cpf" type="String"/>
 		<property name="rg" type="String"/>
-		<property name="customer" type="de.hybris.platform.core.model.user.CustomerModel"/>
+<!--		<property name="customer" type="de.hybris.platform.core.model.user.CustomerModel"/>-->
 	</bean>
 </beans>
