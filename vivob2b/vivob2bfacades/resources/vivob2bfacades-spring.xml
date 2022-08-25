@@ -188,6 +188,8 @@
 	</bean>
 	<bean id="trainingCustomerPopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerPopulator"/>
 
+	<bean id="trainingCustomerDataPopulator" class="br.com.vivo.b2b.facades.populators.TrainingCustomerDataPopulator" parent="customerPopulator"/>
+
 	<alias name="defaultTrainingCustomerFacade" alias="trainingCustomerFacade"/>
 	<bean id="defaultTrainingCustomerFacade" class="br.com.vivo.b2b.facades.customer.impl.DefaultTrainingCustomerFacade">
 		<property name="trainingCustomerPopulator" ref="trainingCustomerPopulator"/>
