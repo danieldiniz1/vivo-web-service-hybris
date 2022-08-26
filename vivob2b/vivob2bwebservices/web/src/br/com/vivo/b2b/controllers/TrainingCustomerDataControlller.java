@@ -42,12 +42,11 @@ public class TrainingCustomerDataControlller {
     @PostMapping
     public ResponseEntity<CustomerDataDTO> cadastraNovoCliente(@RequestBody TrainingCustomerRequestForm form){
         CustomerDataDTO dataDTO = new CustomerDataDTO();
-        CustomerData customerData = trainingCustomerData.criarNovoCliente(converterToCustomerData(form));
-        LOGGER.info("Cliente criado com sucesso");
         try {
-
+            CustomerData customerData = trainingCustomerData.criarNovoCliente(converterToCustomerData(form));
+            LOGGER.info("Cliente criado com sucesso");
             converterToDTOResponse(customerData,dataDTO);
-            return ResponseEntity.ok(dataDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(dataDTO);
         } catch (Exception ex){
             LOGGER.error("cause: " + ex.getCause());
             LOGGER.error("message: " + ex.getMessage());
