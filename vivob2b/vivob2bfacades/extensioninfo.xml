@@ -15,6 +15,7 @@
                 		
         
         <requires-extension name="vivob2bcore"/>
+        <requires-extension name="b2ctelcofacades"/>
                 		
         
         <coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="br.com.vivo.b2b.facades"/>
